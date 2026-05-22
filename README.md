@@ -7,8 +7,8 @@ Production-ready static church website built with Astro, Tailwind CSS, TypeScrip
 Current versions in this project:
 
 astro: 6.3.7
-tailwindcss: 3.4.17
-typescript: 5.6.3
+tailwindcss: 4.3.0
+typescript: 6.0.3
 @astrojs/check: 0.9.9
 decap-cms (CDN in /admin): 3.12.2
 
