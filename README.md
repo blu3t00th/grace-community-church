@@ -1,6 +1,8 @@
 # Grace Community Church Website
 
 Production-ready static church website built with Astro, Tailwind CSS, TypeScript, Astro content collections, Markdown content, and Decap CMS.
+<img width="2529" height="1233" alt="image" src="https://github.com/user-attachments/assets/e7818e1f-071a-460a-8478-7ce3d694f6f5" />
+
 
 ## Tech Stack
 
