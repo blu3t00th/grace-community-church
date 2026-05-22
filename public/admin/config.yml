@@ -8,9 +8,6 @@ publish_mode: editorial_workflow
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-site_url: "https://grace-community-church.netlify.app"
-display_url: "https://grace-community-church.netlify.app"
-
 collections:
   - name: "sermons"
     label: "Sermons"

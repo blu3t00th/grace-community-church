@@ -102,6 +102,11 @@ Then visit:
    - Publish directory: `dist`
 4. Deploy.
 
+After you have your real production domain, update these files with that URL:
+
+- `astro.config.mjs` (`site`)
+- `src/lib/site.ts` (`siteConfig.url`)
+
 ### Enable Decap Auth on Netlify (Recommended)
 
 1. In Netlify site settings, enable **Identity**.
