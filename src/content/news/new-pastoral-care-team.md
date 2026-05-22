@@ -4,7 +4,6 @@ slug: new-pastoral-care-team
 date: 2026-05-16
 author: Grace Church Staff
 excerpt: We launched a new pastoral care team to support members through prayer, visits, and follow-up care.
-image: /uploads/pastoral-care-team.jpg
 featured: true
 ---
 

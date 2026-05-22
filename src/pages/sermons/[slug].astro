@@ -54,7 +54,7 @@ const relatedSermons = sortByDateDesc(
     </dl>
 
     {(sermon.data.audioUrl || sermon.data.videoUrl) && (
-      <div class="mt-4 flex flex-wrap gap-2">
+      <div class="card-actions button-row mt-4">
         {sermon.data.audioUrl && (
           <Button href={sermon.data.audioUrl} size="sm" variant="secondary" target="_blank" rel="noopener noreferrer">
             Listen Audio

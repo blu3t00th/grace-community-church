@@ -6,8 +6,6 @@ date: 2026-04-13
 scripture: Ephesians 2:19-22
 series: Kingdom Living
 description: The church is a spiritual family where every person has a place.
-videoUrl: ""
-image: ""
 featured: false
 ---
 

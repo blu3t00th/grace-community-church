@@ -35,7 +35,7 @@ const slug = getEntrySlug(sermon);
     </div>
   </dl>
 
-  <div class="flex flex-wrap gap-2">
+  <div class="card-actions button-row">
     <Button href={`/sermons/${slug}`} variant="ghost" size="sm">Read Sermon</Button>
     {audioUrl && (
       <Button href={audioUrl} variant="secondary" size="sm" target="_blank" rel="noopener noreferrer">

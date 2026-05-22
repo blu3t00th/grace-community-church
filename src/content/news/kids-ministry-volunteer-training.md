@@ -4,7 +4,6 @@ slug: kids-ministry-volunteer-training
 date: 2026-04-30
 author: Kids Ministry Team
 excerpt: Registration is now open for our upcoming kids ministry volunteer training day.
-image: /uploads/kids-training.jpg
 featured: false
 ---
 

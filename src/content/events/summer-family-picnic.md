@@ -6,7 +6,6 @@ startTime: "12:30"
 endTime: "15:30"
 location: Humlegarden Park, Stockholm
 description: A relaxed afternoon for all ages with food, games, and community.
-image: /uploads/summer-family-picnic.jpg
 featured: true
 ---
 

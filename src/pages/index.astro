@@ -132,7 +132,7 @@ const upcomingEvents = getUpcomingEvents(await getCollection('events')).slice(0,
             Your giving helps us serve families, disciple young people, and share the hope of Jesus in Stockholm.
           </p>
         </div>
-        <div class="flex flex-wrap gap-3">
+        <div class="button-row">
           <Button href="/giving" variant="secondary">Give Online</Button>
           <Button href="/contact" variant="ghost" class="!border-sand-300/70 !bg-white/95">Contact Us</Button>
         </div>
@@ -147,7 +147,7 @@ const upcomingEvents = getUpcomingEvents(await getCollection('events')).slice(0,
         title="We would love to meet you"
         description={`${siteConfig.address} - ${siteConfig.serviceTime}`}
       />
-      <div class="mt-8 flex flex-wrap gap-3">
+      <div class="button-row mt-8">
         <Button href="/visit">Plan Your Visit</Button>
         <Button href="/contact" variant="ghost">Contact Us</Button>
       </div>

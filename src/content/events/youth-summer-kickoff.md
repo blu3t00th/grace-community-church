@@ -6,7 +6,6 @@ startTime: "18:00"
 endTime: "21:00"
 location: Church Youth Hall
 description: Games, worship, and message night launching our youth summer gatherings.
-image: /uploads/youth-summer-kickoff.jpg
 featured: true
 ---
 
