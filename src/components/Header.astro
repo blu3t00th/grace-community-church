@@ -1,0 +1,40 @@
+---
+import Container from './Container.astro';
+import Button from './Button.astro';
+import MobileMenu from './MobileMenu.astro';
+import { primaryNav, siteConfig } from '../lib/site';
+---
+
+<header class="sticky top-0 z-40 border-b border-sand-200/70 bg-sand-50/90 backdrop-blur-xl">
+  <Container class="py-3.5">
+    <div class="hidden items-center justify-between gap-8 md:flex">
+      <a href="/" class="font-heading text-2xl font-bold uppercase tracking-[0.08em] text-sand-900 no-underline">
+        {siteConfig.shortName}
+      </a>
+      <nav aria-label="Main navigation" class="flex items-center gap-1 rounded-full border border-sand-200 bg-white/90 px-2 py-1 shadow-soft">
+        {primaryNav.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.1em] text-sand-700 no-underline hover:bg-sand-100 hover:text-sand-900"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+      <div class="flex items-center gap-2">
+        <Button href="/sermons" variant="ghost" size="sm">Watch Sermons</Button>
+        <Button href="/visit" size="sm">Plan Your Visit</Button>
+      </div>
+    </div>
+
+    <div class="space-y-3 md:hidden">
+      <div class="flex items-center justify-between gap-3">
+        <a href="/" class="font-heading text-2xl font-bold uppercase tracking-[0.08em] text-sand-900 no-underline">
+          {siteConfig.shortName}
+        </a>
+        <Button href="/contact" size="sm" variant="ghost">Contact Us</Button>
+      </div>
+      <MobileMenu />
+    </div>
+  </Container>
+</header>

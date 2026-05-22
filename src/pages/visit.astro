@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import { render } from 'astro:content';
+import { getEditablePage } from '../lib/pages';
+
+const visitPage = await getEditablePage('visit');
+const { Content } = await render(visitPage);
+---
+
+<BaseLayout title="Visit" description={visitPage.data.description} canonical="/visit">
+  <PageHero title={visitPage.data.title} description={visitPage.data.description} eyebrow="New Here" />
+
+  <Container class="section-padding space-y-10">
+    <article class="card prose-content">
+      <Content />
+    </article>
+
+    <section class="card space-y-4">
+      <h2 class="text-4xl font-semibold">Ready for Sunday?</h2>
+      <p class="text-sand-700">
+        If you are planning your first visit, send us a quick message and we will help you feel at home from the moment you arrive.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <Button href="/contact">Contact Us</Button>
+        <Button href="/sermons" variant="ghost">Watch Sermons</Button>
+      </div>
+    </section>
+  </Container>
+</BaseLayout>

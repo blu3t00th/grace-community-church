@@ -1,0 +1,116 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+publish_mode: editorial_workflow
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+site_url: "https://grace-community-church.netlify.app"
+display_url: "https://grace-community-church.netlify.app"
+
+collections:
+  - name: "sermons"
+    label: "Sermons"
+    label_singular: "Sermon"
+    folder: "src/content/sermons"
+    create: true
+    slug: "{{fields.slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, hint: "URL-safe, e.g. grace-in-the-storm" }
+      - { label: "Speaker", name: "speaker", widget: "string", required: true }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false, required: true }
+      - { label: "Scripture", name: "scripture", widget: "string", required: true }
+      - { label: "Series", name: "series", widget: "string", required: true }
+      - { label: "Description", name: "description", widget: "text", required: true }
+      - { label: "Audio URL", name: "audioUrl", widget: "string", required: false, pattern: ['^(https?:\\/\\/.*)?$', "Use a full URL (http/https) or leave empty"] }
+      - { label: "Video URL", name: "videoUrl", widget: "string", required: false, pattern: ['^(https?:\\/\\/.*)?$', "Use a full URL (http/https) or leave empty"] }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown", required: true }
+
+  - name: "events"
+    label: "Events"
+    label_singular: "Event"
+    folder: "src/content/events"
+    create: true
+    slug: "{{fields.slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, hint: "URL-safe, e.g. summer-family-picnic" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false, required: true }
+      - { label: "Start Time", name: "startTime", widget: "string", required: true, hint: "e.g. 10:30" }
+      - { label: "End Time", name: "endTime", widget: "string", required: false, hint: "optional" }
+      - { label: "Location", name: "location", widget: "string", required: true }
+      - { label: "Description", name: "description", widget: "text", required: true }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown", required: true }
+
+  - name: "news"
+    label: "News"
+    label_singular: "News Post"
+    folder: "src/content/news"
+    create: true
+    slug: "{{fields.slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, hint: "URL-safe, e.g. church-app-launch-preview" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false, required: true }
+      - { label: "Author", name: "author", widget: "string", required: true }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: true }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown", required: true }
+
+  - name: "pages"
+    label: "Editable Pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Slug", name: "slug", widget: "hidden", default: "about" }
+          - { label: "Description", name: "description", widget: "text", required: true }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: true }
+
+      - label: "Visit Page"
+        name: "visit"
+        file: "src/content/pages/visit.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Slug", name: "slug", widget: "hidden", default: "visit" }
+          - { label: "Description", name: "description", widget: "text", required: true }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: true }
+
+      - label: "Giving Page"
+        name: "giving"
+        file: "src/content/pages/giving.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Slug", name: "slug", widget: "hidden", default: "giving" }
+          - { label: "Description", name: "description", widget: "text", required: true }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: true }
+
+      - label: "Contact Page"
+        name: "contact"
+        file: "src/content/pages/contact.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Slug", name: "slug", widget: "hidden", default: "contact" }
+          - { label: "Description", name: "description", widget: "text", required: true }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: true }

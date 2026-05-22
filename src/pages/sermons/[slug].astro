@@ -1,0 +1,84 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import SermonCard from '../../components/SermonCard.astro';
+import Button from '../../components/Button.astro';
+import { formatDate } from '../../lib/format';
+import { getEntrySlug, sortByDateDesc } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const sermons = await getCollection('sermons');
+
+  return sermons.map((sermon) => ({
+    params: { slug: getEntrySlug(sermon) },
+    props: { sermon }
+  }));
+}
+
+const { sermon } = Astro.props as { sermon: CollectionEntry<'sermons'> };
+const { Content } = await render(sermon);
+const slug = getEntrySlug(sermon);
+
+const relatedSermons = sortByDateDesc(
+  (await getCollection('sermons')).filter(
+    (entry) => entry.id !== sermon.id && entry.data.series === sermon.data.series
+  )
+).slice(0, 3);
+---
+
+<ContentLayout
+  title={sermon.data.title}
+  description={sermon.data.description}
+  image={sermon.data.image}
+  canonical={`/sermons/${slug}`}
+  eyebrow="Sermon"
+>
+  <Fragment slot="meta">
+    <dl class="grid gap-4 text-sm text-sand-700 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <dt class="font-semibold text-sand-900">Speaker</dt>
+        <dd>{sermon.data.speaker}</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-sand-900">Date</dt>
+        <dd>{formatDate(sermon.data.date)}</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-sand-900">Scripture</dt>
+        <dd>{sermon.data.scripture}</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-sand-900">Series</dt>
+        <dd>{sermon.data.series}</dd>
+      </div>
+    </dl>
+
+    {(sermon.data.audioUrl || sermon.data.videoUrl) && (
+      <div class="mt-4 flex flex-wrap gap-2">
+        {sermon.data.audioUrl && (
+          <Button href={sermon.data.audioUrl} size="sm" variant="secondary" target="_blank" rel="noopener noreferrer">
+            Listen Audio
+          </Button>
+        )}
+        {sermon.data.videoUrl && (
+          <Button href={sermon.data.videoUrl} size="sm" variant="secondary" target="_blank" rel="noopener noreferrer">
+            Watch Video
+          </Button>
+        )}
+      </div>
+    )}
+  </Fragment>
+
+  <Content />
+
+  {relatedSermons.length > 0 && (
+    <section slot="after" class="mt-10 space-y-5">
+      <h2 class="text-4xl font-semibold">Related sermons in {sermon.data.series}</h2>
+      <div class="grid gap-6 lg:grid-cols-3">
+        {relatedSermons.map((related) => (
+          <SermonCard sermon={related} />
+        ))}
+      </div>
+    </section>
+  )}
+</ContentLayout>

@@ -1,0 +1,30 @@
+---
+import Button from './Button.astro';
+import { primaryNav } from '../lib/site';
+---
+
+<details class="group md:hidden">
+  <summary class="flex cursor-pointer items-center justify-between rounded-2xl border border-sand-300 bg-white/90 px-4 py-3 text-sm font-bold uppercase tracking-[0.08em] text-sand-900 marker:content-['']">
+    Menu
+    <span class="text-xs text-sand-600 group-open:hidden">Open</span>
+    <span class="hidden text-xs text-sand-600 group-open:inline">Close</span>
+  </summary>
+  <nav aria-label="Mobile navigation" class="mt-3 space-y-2 rounded-3xl border border-sand-200 bg-white/95 p-3 shadow-soft">
+    <ul class="space-y-1">
+      {primaryNav.map((item) => (
+        <li>
+          <a
+            class="block rounded-xl px-3 py-2 text-sm font-bold uppercase tracking-[0.08em] text-sand-800 hover:bg-sand-100"
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="grid gap-2 pt-2">
+      <Button href="/visit" size="sm">Plan Your Visit</Button>
+      <Button href="/sermons" variant="ghost" size="sm">Watch Sermons</Button>
+    </div>
+  </nav>
+</details>

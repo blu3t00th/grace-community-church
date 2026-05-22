@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { render } from 'astro:content';
+import { getEditablePage } from '../lib/pages';
+import { siteConfig } from '../lib/site';
+
+const contactPage = await getEditablePage('contact');
+const { Content } = await render(contactPage);
+---
+
+<BaseLayout title="Contact" description={contactPage.data.description} canonical="/contact">
+  <PageHero title={contactPage.data.title} description={contactPage.data.description} eyebrow="Get In Touch" />
+
+  <Container class="section-padding space-y-10">
+    <article class="card prose-content">
+      <Content />
+    </article>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <ContactForm />
+
+      <aside class="card space-y-5">
+        <h2 class="text-4xl font-semibold">Contact Details</h2>
+        <ul class="space-y-3 text-sand-700">
+          <li><span class="font-semibold text-sand-900">Email:</span> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+          <li><span class="font-semibold text-sand-900">Phone:</span> <a href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`}>{siteConfig.phone}</a></li>
+          <li><span class="font-semibold text-sand-900">Address:</span> {siteConfig.address}</li>
+          <li><span class="font-semibold text-sand-900">Service Time:</span> {siteConfig.serviceTime}</li>
+        </ul>
+
+        <div class="rounded-xl border border-dashed border-sand-300 bg-sand-50 p-6">
+          <p class="font-semibold text-sand-900">Map Placeholder</p>
+          <p class="mt-2 text-sand-700">Embed Google Maps or another map provider here later.</p>
+        </div>
+      </aside>
+    </div>
+  </Container>
+</BaseLayout>

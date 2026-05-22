@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+import { formatDate } from '../lib/format';
+import { getEntrySlug } from '../lib/content';
+
+interface Props {
+  event: CollectionEntry<'events'>;
+}
+
+const { event } = Astro.props;
+const { title, date, startTime, endTime, location, description, image } = event.data;
+const slug = getEntrySlug(event);
+---
+
+<article class="card h-full space-y-4">
+  {image && (
+    <img
+      src={image}
+      alt={`${title} event image`}
+      loading="lazy"
+      class="h-44 w-full rounded-2xl object-cover"
+      width="640"
+      height="360"
+    />
+  )}
+
+  <h3 class="text-3xl font-bold uppercase leading-[0.95]">
+    <a href={`/events/${slug}`} class="no-underline hover:underline">{title}</a>
+  </h3>
+  <p class="text-sand-700">{description}</p>
+
+  <dl class="grid gap-3 rounded-2xl border border-sand-200 bg-sand-50/80 p-4 text-sm text-sand-700 sm:grid-cols-2">
+    <div>
+      <dt class="text-xs font-bold uppercase tracking-[0.08em] text-sand-600">Date</dt>
+      <dd>{formatDate(date)}</dd>
+    </div>
+    <div>
+      <dt class="text-xs font-bold uppercase tracking-[0.08em] text-sand-600">Time</dt>
+      <dd>{endTime ? `${startTime} - ${endTime}` : startTime}</dd>
+    </div>
+    <div class="sm:col-span-2">
+      <dt class="text-xs font-bold uppercase tracking-[0.08em] text-sand-600">Location</dt>
+      <dd>{location}</dd>
+    </div>
+  </dl>
+
+  <Button href={`/events/${slug}`} variant="ghost" size="sm">View Event</Button>
+</article>

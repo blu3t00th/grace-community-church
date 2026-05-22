@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    @apply border-sand-200;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply m-0 bg-warm-gradient font-body text-sand-900 antialiased;
+    background-image:
+      radial-gradient(circle at 10% 14%, rgba(79, 121, 245, 0.11), transparent 34%),
+      radial-gradient(circle at 84% 11%, rgba(99, 88, 70, 0.1), transparent 35%),
+      linear-gradient(145deg, #fbfaf7 0%, #f3efe6 52%, #eee8db 100%);
+  }
+
+  main {
+    @apply overflow-x-clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading tracking-[-0.02em] text-sand-900;
+  }
+
+  a {
+    @apply text-inherit no-underline transition duration-200;
+  }
+
+  a:hover {
+    @apply text-sand-700;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible {
+    @apply outline-none ring-2 ring-pine-500 ring-offset-2 ring-offset-sand-50;
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply absolute left-4 top-2 z-50 -translate-y-20 rounded-md bg-sand-900 px-4 py-2 text-sm font-semibold text-sand-50 transition;
+  }
+
+  .skip-link:focus {
+    @apply translate-y-0;
+  }
+
+  .card {
+    @apply rounded-3xl border border-sand-200 bg-white/95 p-6 shadow-soft transition duration-300;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .prose-content {
+    @apply max-w-none space-y-5 text-lg leading-relaxed text-sand-700;
+  }
+
+  .prose-content h2 {
+    @apply mt-8 text-3xl font-semibold text-sand-900;
+  }
+
+  .prose-content h3 {
+    @apply mt-6 text-2xl font-semibold text-sand-900;
+  }
+
+  .prose-content p {
+    @apply leading-8;
+  }
+
+  .prose-content ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+
+  .eyebrow {
+    @apply inline-flex rounded-full border border-pine-200 bg-pine-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-pine-700;
+  }
+
+  .hero-mesh {
+    background-image:
+      radial-gradient(circle at 12% 22%, rgba(79, 121, 245, 0.2), transparent 44%),
+      radial-gradient(circle at 92% 11%, rgba(23, 22, 19, 0.16), transparent 45%),
+      linear-gradient(170deg, #fff 0%, #f8f5ef 64%, #ede5d6 100%);
+  }
+
+  .surface-dark {
+    @apply border border-sand-700/30 bg-sand-900 text-sand-50;
+  }
+}

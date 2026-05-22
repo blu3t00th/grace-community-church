@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import PageHero from '../components/PageHero.astro';
+import MinistryCard from '../components/MinistryCard.astro';
+import Button from '../components/Button.astro';
+import { ministries } from '../lib/site';
+---
+
+<BaseLayout
+  title="Ministries"
+  description="Discover ministries for kids, youth, worship, small groups, outreach, and prayer at Grace Community Church."
+  canonical="/ministries"
+>
+  <PageHero
+    title="Ministries"
+    description="Find your place to grow, serve, and belong through ministry communities across the church."
+    eyebrow="Church Life"
+  />
+
+  <Container class="section-padding space-y-12">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {ministries.map((ministry) => (
+        <MinistryCard title={ministry.title} summary={ministry.summary} />
+      ))}
+    </div>
+
+    <section class="card space-y-4">
+      <h2 class="text-4xl font-semibold">Want to get involved?</h2>
+      <p class="text-sand-700">
+        We would love to help you find a ministry team that fits your gifts and season of life.
+      </p>
+      <Button href="/contact">Contact Us</Button>
+    </section>
+  </Container>
+</BaseLayout>

@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Container from '../../components/Container.astro';
+import SermonCard from '../../components/SermonCard.astro';
+import { sortByDateDesc } from '../../lib/content';
+
+const sermons = sortByDateDesc(await getCollection('sermons'));
+---
+
+<BaseLayout
+  title="Sermons"
+  description="Browse sermons from Grace Community Church, including series, speakers, and Scripture references."
+  canonical="/sermons"
+>
+  <PageHero
+    title="Sermons"
+    description="Explore biblical teaching from Grace Community Church. Sort and filtering by series and speaker can be added easily in future updates."
+    eyebrow="Teachings"
+  />
+
+  <Container class="section-padding">
+    <div class="grid gap-6 lg:grid-cols-2">
+      {sermons.map((sermon) => (
+        <SermonCard sermon={sermon} />
+      ))}
+    </div>
+  </Container>
+</BaseLayout>

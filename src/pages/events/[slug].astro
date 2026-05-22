@@ -1,0 +1,50 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import Button from '../../components/Button.astro';
+import { formatDate } from '../../lib/format';
+import { getEntrySlug } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+
+  return events.map((event) => ({
+    params: { slug: getEntrySlug(event) },
+    props: { event }
+  }));
+}
+
+const { event } = Astro.props as { event: CollectionEntry<'events'> };
+const { Content } = await render(event);
+const slug = getEntrySlug(event);
+---
+
+<ContentLayout
+  title={event.data.title}
+  description={event.data.description}
+  image={event.data.image}
+  canonical={`/events/${slug}`}
+  eyebrow="Event"
+>
+  <Fragment slot="meta">
+    <dl class="grid gap-4 text-sm text-sand-700 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <dt class="font-semibold text-sand-900">Date</dt>
+        <dd>{formatDate(event.data.date)}</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-sand-900">Time</dt>
+        <dd>{event.data.endTime ? `${event.data.startTime} - ${event.data.endTime}` : event.data.startTime}</dd>
+      </div>
+      <div class="sm:col-span-2">
+        <dt class="font-semibold text-sand-900">Location</dt>
+        <dd>{event.data.location}</dd>
+      </div>
+    </dl>
+    <div class="mt-4">
+      <Button href="/contact" size="sm">Contact Us</Button>
+    </div>
+  </Fragment>
+
+  <Content />
+</ContentLayout>

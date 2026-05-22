@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import { render } from 'astro:content';
+import { getEditablePage } from '../lib/pages';
+
+const givingPage = await getEditablePage('giving');
+const { Content } = await render(givingPage);
+---
+
+<BaseLayout title="Giving" description={givingPage.data.description} canonical="/giving">
+  <PageHero title={givingPage.data.title} description={givingPage.data.description} eyebrow="Generosity" />
+
+  <Container class="section-padding space-y-10">
+    <article class="card prose-content">
+      <Content />
+    </article>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+      <article class="card space-y-4">
+        <h2 class="text-4xl font-semibold">Give Online</h2>
+        <p class="text-sand-700">
+          Online giving provider link can be connected here when your church account is ready.
+        </p>
+        <Button href="#">Give Online (Placeholder)</Button>
+      </article>
+
+      <article class="card space-y-4">
+        <h2 class="text-4xl font-semibold">Bank Transfer</h2>
+        <p class="text-sand-700">Bankgiro/IBAN details can be added here for direct giving options.</p>
+        <p class="text-sm text-sand-600">Example reference: "General Fund" or "Missions".</p>
+      </article>
+    </section>
+
+    <section class="card space-y-4">
+      <h2 class="text-4xl font-semibold">Questions about giving?</h2>
+      <p class="text-sand-700">
+        Our finance team can help with giving records, tax statements, and practical details.
+      </p>
+      <Button href="/contact" variant="ghost">Contact Finance Team</Button>
+    </section>
+  </Container>
+</BaseLayout>

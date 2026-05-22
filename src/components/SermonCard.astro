@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+import { formatDate } from '../lib/format';
+import { getEntrySlug } from '../lib/content';
+
+interface Props {
+  sermon: CollectionEntry<'sermons'>;
+}
+
+const { sermon } = Astro.props;
+const { title, speaker, date, scripture, series, description, audioUrl, videoUrl } = sermon.data;
+const slug = getEntrySlug(sermon);
+---
+
+<article class="card h-full space-y-4">
+  <p class="text-xs font-bold uppercase tracking-[0.15em] text-pine-700">{series}</p>
+  <h3 class="text-3xl font-bold uppercase leading-[0.95]">
+    <a href={`/sermons/${slug}`} class="no-underline hover:underline">{title}</a>
+  </h3>
+  <p class="text-sand-700">{description}</p>
+
+  <dl class="grid gap-3 rounded-2xl border border-sand-200 bg-sand-50/80 p-4 text-sm text-sand-700 sm:grid-cols-2">
+    <div>
+      <dt class="text-xs font-bold uppercase tracking-[0.08em] text-sand-600">Date</dt>
+      <dd>{formatDate(date)}</dd>
+    </div>
+    <div>
+      <dt class="text-xs font-bold uppercase tracking-[0.08em] text-sand-600">Speaker</dt>
+      <dd>{speaker}</dd>
+    </div>
+    <div>
+      <dt class="text-xs font-bold uppercase tracking-[0.08em] text-sand-600">Scripture</dt>
+      <dd>{scripture}</dd>
+    </div>
+  </dl>
+
+  <div class="flex flex-wrap gap-2">
+    <Button href={`/sermons/${slug}`} variant="ghost" size="sm">Read Sermon</Button>
+    {audioUrl && (
+      <Button href={audioUrl} variant="secondary" size="sm" target="_blank" rel="noopener noreferrer">
+        Listen Audio
+      </Button>
+    )}
+    {videoUrl && (
+      <Button href={videoUrl} variant="secondary" size="sm" target="_blank" rel="noopener noreferrer">
+        Watch Video
+      </Button>
+    )}
+  </div>
+</article>

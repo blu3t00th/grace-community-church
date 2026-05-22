@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Container from '../../components/Container.astro';
+import EventCard from '../../components/EventCard.astro';
+import { getEventsSorted } from '../../lib/content';
+
+const events = getEventsSorted(await getCollection('events'));
+---
+
+<BaseLayout
+  title="Events"
+  description="See upcoming events and key gatherings at Grace Community Church in Stockholm."
+  canonical="/events"
+>
+  <PageHero
+    title="Events"
+    description="Upcoming events are listed first so you can quickly find your next step."
+    eyebrow="Calendar"
+  />
+
+  <Container class="section-padding">
+    <div class="grid gap-6 lg:grid-cols-2">
+      {events.map((event) => (
+        <EventCard event={event} />
+      ))}
+    </div>
+  </Container>
+</BaseLayout>

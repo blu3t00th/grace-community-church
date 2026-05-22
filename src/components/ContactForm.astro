@@ -1,0 +1,63 @@
+---
+import Button from './Button.astro';
+---
+
+<form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="card space-y-5"
+>
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="hidden">
+    <label>
+      Don't fill this out if you're human: <input name="bot-field" />
+    </label>
+  </p>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <label class="space-y-2 text-xs font-bold uppercase tracking-[0.08em] text-sand-700">
+      Name
+      <input
+        class="w-full rounded-xl border border-sand-300 bg-white px-4 py-3 text-base font-medium normal-case tracking-normal text-sand-900"
+        type="text"
+        name="name"
+        autocomplete="name"
+        required
+      />
+    </label>
+
+    <label class="space-y-2 text-xs font-bold uppercase tracking-[0.08em] text-sand-700">
+      Email
+      <input
+        class="w-full rounded-xl border border-sand-300 bg-white px-4 py-3 text-base font-medium normal-case tracking-normal text-sand-900"
+        type="email"
+        name="email"
+        autocomplete="email"
+        required
+      />
+    </label>
+  </div>
+
+  <label class="space-y-2 text-xs font-bold uppercase tracking-[0.08em] text-sand-700">
+    Subject
+    <input
+      class="w-full rounded-xl border border-sand-300 bg-white px-4 py-3 text-base font-medium normal-case tracking-normal text-sand-900"
+      type="text"
+      name="subject"
+      required
+    />
+  </label>
+
+  <label class="space-y-2 text-xs font-bold uppercase tracking-[0.08em] text-sand-700">
+    Message
+    <textarea
+      class="min-h-36 w-full rounded-xl border border-sand-300 bg-white px-4 py-3 text-base font-medium normal-case tracking-normal text-sand-900"
+      name="message"
+      required
+    ></textarea>
+  </label>
+
+  <Button type="submit" size="md">Send Message</Button>
+</form>

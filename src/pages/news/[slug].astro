@@ -1,0 +1,46 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { formatDate } from '../../lib/format';
+import { getEntrySlug } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news');
+
+  return posts.map((post) => ({
+    params: { slug: getEntrySlug(post) },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props as { post: CollectionEntry<'news'> };
+const { Content } = await render(post);
+const slug = getEntrySlug(post);
+---
+
+<ContentLayout
+  title={post.data.title}
+  description={post.data.excerpt}
+  image={post.data.image}
+  canonical={`/news/${slug}`}
+  eyebrow="News"
+>
+  <Fragment slot="meta">
+    <dl class="grid gap-4 text-sm text-sand-700 sm:grid-cols-3">
+      <div>
+        <dt class="font-semibold text-sand-900">Author</dt>
+        <dd>{post.data.author}</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-sand-900">Date</dt>
+        <dd>{formatDate(post.data.date)}</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-sand-900">Summary</dt>
+        <dd>{post.data.excerpt}</dd>
+      </div>
+    </dl>
+  </Fragment>
+
+  <Content />
+</ContentLayout>

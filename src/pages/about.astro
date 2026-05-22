@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { render } from 'astro:content';
+import { getEditablePage } from '../lib/pages';
+
+const aboutPage = await getEditablePage('about');
+const { Content } = await render(aboutPage);
+
+const leaders = [
+  { name: 'Lead Pastor (Placeholder)', role: 'Preaching, vision, and pastoral care' },
+  { name: 'Executive Pastor (Placeholder)', role: 'Operations, teams, and church life' },
+  { name: 'Worship Pastor (Placeholder)', role: 'Worship, creative ministry, and production' }
+];
+---
+
+<BaseLayout title="About" description={aboutPage.data.description} canonical="/about">
+  <PageHero title={aboutPage.data.title} description={aboutPage.data.description} eyebrow="About Grace" />
+
+  <Container class="section-padding space-y-14">
+    <article class="card prose-content">
+      <Content />
+    </article>
+
+    <section class="space-y-6">
+      <SectionHeading
+        eyebrow="Leadership"
+        title="Meet our leadership team"
+        description="Our leaders are here to serve, equip, and care for the church family."
+      />
+      <div class="grid gap-6 md:grid-cols-3">
+        {leaders.map((leader) => (
+          <article class="card space-y-2">
+            <h3 class="text-3xl font-semibold">{leader.name}</h3>
+            <p class="text-sand-700">{leader.role}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  </Container>
+</BaseLayout>

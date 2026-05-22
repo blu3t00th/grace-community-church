@@ -1,0 +1,63 @@
+---
+import Button from './Button.astro';
+import Container from './Container.astro';
+import { siteConfig } from '../lib/site';
+---
+
+<section class="hero-mesh section-padding relative overflow-hidden border-b border-sand-200">
+  <div class="pointer-events-none absolute -left-20 top-16 h-56 w-56 rounded-full bg-pine-200/50 blur-3xl"></div>
+  <div class="pointer-events-none absolute -right-24 bottom-6 h-64 w-64 rounded-full bg-sand-300/40 blur-3xl"></div>
+
+  <Container class="relative">
+    <div class="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <div class="space-y-7">
+        <p class="eyebrow">Grace Community Church - Stockholm</p>
+        <h1 class="text-5xl font-bold uppercase leading-[0.92] sm:text-6xl lg:text-7xl">
+          Faith.
+          <span class="block text-pine-700">Hope.</span>
+          <span class="block">A place to belong.</span>
+        </h1>
+        <p class="max-w-2xl text-lg text-sand-700 sm:text-xl">
+          Join a modern church family where worship is authentic, teaching is biblical, and community is real.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <Button href="/visit" size="lg">Plan Your Visit</Button>
+          <Button href="/sermons" variant="secondary" size="lg">Watch Sermons</Button>
+          <Button href="/giving" variant="ghost" size="lg">Give Online</Button>
+          <Button href="/contact" variant="ghost" size="lg">Contact Us</Button>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="rounded-2xl border border-sand-200 bg-white/85 px-4 py-3">
+            <p class="text-xs font-bold uppercase tracking-[0.1em] text-sand-600">Service Time</p>
+            <p class="mt-1 text-base font-semibold text-sand-900">{siteConfig.serviceTime}</p>
+          </div>
+          <div class="rounded-2xl border border-sand-200 bg-white/85 px-4 py-3">
+            <p class="text-xs font-bold uppercase tracking-[0.1em] text-sand-600">Location</p>
+            <p class="mt-1 text-base font-semibold text-sand-900">{siteConfig.location}</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card space-y-5">
+        <div class="overflow-hidden rounded-2xl border border-sand-200 bg-sand-900 px-5 py-8 text-sand-50">
+          <p class="text-xs font-bold uppercase tracking-[0.13em] text-sand-300">This Sunday</p>
+          <p class="mt-2 font-heading text-5xl font-bold leading-none">10:30</p>
+          <p class="mt-2 text-sm text-sand-200">Live worship, prayer, and a practical Bible message.</p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <article class="rounded-2xl border border-sand-200 bg-sand-50 px-4 py-4">
+            <p class="text-xs font-bold uppercase tracking-[0.1em] text-sand-600">New Here?</p>
+            <p class="mt-2 text-sm text-sand-800">Friendly welcome team and clear next steps.</p>
+          </article>
+          <article class="rounded-2xl border border-sand-200 bg-sand-50 px-4 py-4">
+            <p class="text-xs font-bold uppercase tracking-[0.1em] text-sand-600">Online</p>
+            <p class="mt-2 text-sm text-sand-800">Catch recent sermons and updates anytime.</p>
+          </article>
+        </div>
+
+        <Button href="/visit" class="w-full" size="md">Plan Your First Sunday</Button>
+      </aside>
+    </div>
+  </Container>
+</section>

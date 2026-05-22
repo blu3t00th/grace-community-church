@@ -1,0 +1,156 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Container from '../components/Container.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SermonCard from '../components/SermonCard.astro';
+import EventCard from '../components/EventCard.astro';
+import MinistryCard from '../components/MinistryCard.astro';
+import Button from '../components/Button.astro';
+import { getUpcomingEvents, sortByDateDesc } from '../lib/content';
+import { ministries, siteConfig } from '../lib/site';
+
+const sermons = sortByDateDesc(await getCollection('sermons')).slice(0, 3);
+const upcomingEvents = getUpcomingEvents(await getCollection('events')).slice(0, 3);
+---
+
+<BaseLayout title="Home" description={siteConfig.description} canonical="/">
+  <Hero />
+
+  <section class="section-padding border-b border-sand-200 bg-sand-900">
+    <Container>
+      <div class="grid gap-4 md:grid-cols-4">
+        <article class="rounded-2xl border border-sand-700 bg-sand-800 p-5 text-sand-100">
+          <p class="text-xs font-bold uppercase tracking-[0.1em] text-sand-300">Plan Your Visit</p>
+          <p class="mt-2 text-sm text-sand-200">Everything you need for your first Sunday with us.</p>
+          <Button href="/visit" variant="secondary" size="sm" class="mt-4 w-full">Start Here</Button>
+        </article>
+        <article class="rounded-2xl border border-sand-700 bg-sand-800 p-5 text-sand-100">
+          <p class="text-xs font-bold uppercase tracking-[0.1em] text-sand-300">Watch Sermons</p>
+          <p class="mt-2 text-sm text-sand-200">Recent messages to encourage your week.</p>
+          <Button href="/sermons" variant="secondary" size="sm" class="mt-4 w-full">Watch Now</Button>
+        </article>
+        <article class="rounded-2xl border border-sand-700 bg-sand-800 p-5 text-sand-100">
+          <p class="text-xs font-bold uppercase tracking-[0.1em] text-sand-300">Give Online</p>
+          <p class="mt-2 text-sm text-sand-200">Support mission and ministry in Stockholm.</p>
+          <Button href="/giving" variant="secondary" size="sm" class="mt-4 w-full">Give</Button>
+        </article>
+        <article class="rounded-2xl border border-sand-700 bg-sand-800 p-5 text-sand-100">
+          <p class="text-xs font-bold uppercase tracking-[0.1em] text-sand-300">Contact Us</p>
+          <p class="mt-2 text-sm text-sand-200">Questions, prayer requests, or next steps.</p>
+          <Button href="/contact" variant="secondary" size="sm" class="mt-4 w-full">Connect</Button>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-padding border-b border-sand-200 bg-white/70">
+    <Container>
+      <div class="grid items-start gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div class="space-y-4">
+          <SectionHeading
+            eyebrow="About"
+            title="A welcoming church with a clear mission"
+            description="We help people know Jesus, grow in faith, and live with purpose in everyday life."
+          />
+          <Button href="/about" variant="ghost">Learn More About Us</Button>
+        </div>
+        <aside class="card space-y-4">
+          <h3 class="text-3xl font-bold uppercase leading-[0.95]">Core Values</h3>
+          <ul class="space-y-2 text-sand-700">
+            <li>Scripture-centered teaching</li>
+            <li>Authentic worship and prayer</li>
+            <li>Strong community and discipleship</li>
+            <li>Compassionate local outreach</li>
+          </ul>
+        </aside>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-padding border-b border-sand-200 bg-sand-50/80">
+    <Container>
+      <SectionHeading
+        eyebrow="Latest Sermons"
+        title="Faith-building messages for real life"
+        description="Watch, listen, and read recent messages from our teaching team."
+      />
+      <div class="mt-8 grid gap-6 lg:grid-cols-3">
+        {sermons.map((sermon) => (
+          <SermonCard sermon={sermon} />
+        ))}
+      </div>
+      <div class="mt-8">
+        <Button href="/sermons" variant="ghost">Watch Sermons</Button>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-padding border-b border-sand-200 bg-white/80">
+    <Container>
+      <SectionHeading
+        eyebrow="Upcoming Events"
+        title="Find your next step in community"
+        description="From prayer nights to family gatherings, there is always a way to connect."
+      />
+      <div class="mt-8 grid gap-6 lg:grid-cols-3">
+        {upcomingEvents.map((event) => (
+          <EventCard event={event} />
+        ))}
+      </div>
+      <div class="mt-8">
+        <Button href="/events" variant="ghost">View All Events</Button>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-padding border-b border-sand-200 bg-sand-50/70">
+    <Container>
+      <SectionHeading
+        eyebrow="Ministries"
+        title="A place for everyone to belong"
+        description="Find your next step through ministries for all ages and life stages."
+      />
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {ministries.map((ministry) => (
+          <MinistryCard title={ministry.title} summary={ministry.summary} />
+        ))}
+      </div>
+      <div class="mt-8">
+        <Button href="/ministries" variant="ghost">Explore Ministries</Button>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-padding border-b border-sand-200 bg-sand-900">
+    <Container>
+      <div class="grid gap-8 rounded-3xl border border-sand-700 bg-sand-800 p-8 text-sand-50 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div class="space-y-4">
+          <h2 class="text-4xl font-bold uppercase leading-[0.95] sm:text-5xl">Support the mission through generous giving</h2>
+          <p class="text-lg text-sand-200">
+            Your giving helps us serve families, disciple young people, and share the hope of Jesus in Stockholm.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <Button href="/giving" variant="secondary">Give Online</Button>
+          <Button href="/contact" variant="ghost">Contact Us</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-padding bg-white/85">
+    <Container>
+      <SectionHeading
+        eyebrow="Contact & Location"
+        title="We would love to meet you"
+        description={`${siteConfig.address} - ${siteConfig.serviceTime}`}
+      />
+      <div class="mt-8 flex flex-wrap gap-3">
+        <Button href="/visit">Plan Your Visit</Button>
+        <Button href="/contact" variant="ghost">Contact Us</Button>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

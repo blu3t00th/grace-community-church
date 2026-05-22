@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+import { formatDate } from '../lib/format';
+import { getEntrySlug } from '../lib/content';
+
+interface Props {
+  post: CollectionEntry<'news'>;
+}
+
+const { post } = Astro.props;
+const { title, date, author, excerpt, image } = post.data;
+const slug = getEntrySlug(post);
+---
+
+<article class="card h-full space-y-4">
+  {image && (
+    <img
+      src={image}
+      alt={`${title} news image`}
+      loading="lazy"
+      class="h-44 w-full rounded-2xl object-cover"
+      width="640"
+      height="360"
+    />
+  )}
+  <h3 class="text-3xl font-bold uppercase leading-[0.95]">
+    <a href={`/news/${slug}`} class="no-underline hover:underline">{title}</a>
+  </h3>
+  <p class="text-sand-700">{excerpt}</p>
+  <p class="text-xs font-bold uppercase tracking-[0.08em] text-sand-600">{formatDate(date)} | {author}</p>
+  <Button href={`/news/${slug}`} variant="ghost" size="sm">Read Article</Button>
+</article>

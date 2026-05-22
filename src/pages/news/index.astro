@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Container from '../../components/Container.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import { sortByDateDesc } from '../../lib/content';
+
+const posts = sortByDateDesc(await getCollection('news'));
+---
+
+<BaseLayout
+  title="News"
+  description="Read updates, stories, and announcements from Grace Community Church."
+  canonical="/news"
+>
+  <PageHero
+    title="News"
+    description="Latest church updates, stories, and announcements."
+    eyebrow="Updates"
+  />
+
+  <Container class="section-padding">
+    <div class="grid gap-6 lg:grid-cols-2">
+      {posts.map((post) => (
+        <NewsCard post={post} />
+      ))}
+    </div>
+  </Container>
+</BaseLayout>

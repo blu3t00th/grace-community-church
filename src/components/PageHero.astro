@@ -1,0 +1,21 @@
+---
+import Container from './Container.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow?: string;
+}
+
+const { title, description, eyebrow } = Astro.props;
+---
+
+<section class="hero-mesh section-padding border-b border-sand-200">
+  <Container>
+    <div class="max-w-4xl space-y-5">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1 class="text-5xl font-bold uppercase leading-[0.92] sm:text-6xl">{title}</h1>
+      <p class="text-lg text-sand-700 sm:text-xl">{description}</p>
+    </div>
+  </Container>
+</section>
