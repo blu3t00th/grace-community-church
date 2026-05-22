@@ -3,23 +3,23 @@ import Container from './Container.astro';
 import { primaryNav, siteConfig } from '../lib/site';
 ---
 
-<footer class="mt-10 border-t border-sand-200 bg-sand-900 py-14 text-sand-100">
+<footer class="mt-10 border-t border-sand-200 bg-[#1c2130] py-14 text-sand-100">
   <Container>
     <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
       <section>
         <h2 class="text-2xl font-bold uppercase tracking-[0.06em] text-white">{siteConfig.name}</h2>
-        <p class="mt-3 text-sand-300">Welcoming people to know Jesus, find community, and live on mission in Stockholm.</p>
+        <p class="mt-3 text-sand-300/90">Welcoming people to know Jesus, find community, and live on mission in Stockholm.</p>
       </section>
 
       <section>
         <h2 class="text-xl font-bold uppercase tracking-[0.06em] text-white">Service</h2>
-        <p class="mt-3 text-sand-300">{siteConfig.serviceTime}</p>
-        <p class="text-sand-300">{siteConfig.address}</p>
+        <p class="mt-3 text-sand-300/90">{siteConfig.serviceTime}</p>
+        <p class="text-sand-300/90">{siteConfig.address}</p>
       </section>
 
       <section>
         <h2 class="text-xl font-bold uppercase tracking-[0.06em] text-white">Contact</h2>
-        <ul class="mt-3 space-y-2 text-sand-300">
+        <ul class="mt-3 space-y-2 text-sand-300/90">
           <li>
             <a href={`mailto:${siteConfig.email}`} class="no-underline hover:text-white">{siteConfig.email}</a>
           </li>
@@ -31,7 +31,7 @@ import { primaryNav, siteConfig } from '../lib/site';
 
       <section>
         <h2 class="text-xl font-bold uppercase tracking-[0.06em] text-white">Explore</h2>
-        <ul class="mt-3 grid grid-cols-2 gap-2 text-sm text-sand-300 sm:grid-cols-1">
+        <ul class="mt-3 grid grid-cols-2 gap-2 text-sm text-sand-300/90 sm:grid-cols-1">
           {primaryNav.map((item) => (
             <li>
               <a class="no-underline hover:text-white" href={item.href}>{item.label}</a>
@@ -41,7 +41,7 @@ import { primaryNav, siteConfig } from '../lib/site';
       </section>
     </div>
 
-    <div class="mt-10 border-t border-sand-700 pt-5 text-sm text-sand-400">
+    <div class="mt-10 border-t border-sand-600/60 pt-5 text-sm text-sand-400">
       <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
     </div>
   </Container>

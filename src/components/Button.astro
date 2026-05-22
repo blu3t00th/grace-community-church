@@ -20,21 +20,18 @@ const {
 } = Astro.props;
 
 const variantClasses = {
-  primary:
-    'border border-transparent bg-sand-900 text-white hover:-translate-y-0.5 hover:bg-black hover:shadow-[0_10px_22px_rgba(16,15,13,0.25)]',
-  secondary:
-    'border border-transparent bg-pine-600 text-white hover:-translate-y-0.5 hover:bg-pine-700 hover:shadow-[0_10px_24px_rgba(59,95,205,0.28)]',
-  ghost:
-    'border border-sand-300 bg-white/90 text-sand-900 hover:-translate-y-0.5 hover:border-sand-400 hover:bg-sand-100/70'
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  ghost: 'btn-ghost'
 }[variant];
 
 const sizeClasses = {
-  sm: 'px-4 py-2 text-[0.78rem]',
-  md: 'px-5 py-3 text-[0.9rem]',
-  lg: 'px-6 py-3.5 text-[0.9rem]'
+  sm: 'btn-sm',
+  md: 'btn-md',
+  lg: 'btn-lg'
 }[size];
 
-const baseClasses = `inline-flex items-center justify-center rounded-full font-bold uppercase tracking-[0.08em] transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2 focus-visible:ring-offset-sand-50 ${variantClasses} ${sizeClasses} ${className}`;
+const baseClasses = `btn ${variantClasses} ${sizeClasses} ${className}`;
 ---
 
 {href ? (
