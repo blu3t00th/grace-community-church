@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Grace Community Church',
   shortName: 'Grace Church',
-  url: 'https://grace-community-church.netlify.app',
+  url: 'https://blu3t00th.github.io/grace-community-church',
   description:
     'A welcoming church family in Stockholm, Sweden where people can encounter Jesus, grow in faith, and serve their city.',
   location: 'Stockholm, Sweden',

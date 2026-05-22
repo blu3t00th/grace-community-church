@@ -1,8 +1,14 @@
 {
   "name": "grace-community-church",
   "version": "1.0.0",
+  "description": "Modern Astro church website with Decap CMS for Grace Community Church.",
   "private": true,
   "type": "module",
+  "homepage": "https://github.com/blu3t00th/grace-community-church",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blu3t00th/grace-community-church.git"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
